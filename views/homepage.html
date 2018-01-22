@@ -1,0 +1,60 @@
+<html>
+
+<body id="page-top">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible">
+
+        <title>Chat-app</title>
+        <!--bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+            crossorigin="anonymous">
+        <!--font awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--custom css-->
+        <link rel="stylesheet" href="css/custom.css">
+    </head>
+    <header></header>
+
+    <main>
+        <div class="fluid-container">
+            <div class="row">
+                    <h2 class="text-center">Lets chat..</h2>
+            </div>
+            <div class="row">            
+                <div class="content">
+                    <div class="text users"></div>
+                    <div class="text chat-window">
+                    </div>
+                    <div class="text text-area">
+                        <form>
+                            <div class="form-control">
+                                    <input type="text" class="form-control text-input" placeholder="  Enter message here">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+    
+    
+    <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type='text/javascript' src="/socket.io/socket.io.js"></script>
+    <!-- <script src="js/custom.js"></script> -->
+    <script>  
+        var socket = io.connect('localhost:3002');
+        socket.on('connect', function(data) {
+           socket.emit('join', 'Hello World from client');
+        });
+       </script> 
+</body>
+
+</html>
