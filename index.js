@@ -5,8 +5,9 @@ var router = require('./routes/BaseRouter');
 
 var app = express();
 var server = require('http').createServer(app);
-var socket = require('socket.io').listen(server);
+var ioSoc = require('socket.io').listen(server);
 var portNo = 3002;
+var activeUsers = [];
 
 //set view engine   
 app.set('views', path.join(__dirname, '/views'));
@@ -25,10 +26,40 @@ app.use(bodyParser.urlencoded({
 //set routes
 app.use('/', router);
 
-server.listen(process.env.PORT || 3002, function () {
+server.listen(process.env.PORT || portNo, function () {
     console.log('Port : ' + portNo);
 });
 
-socket.sockets.on('connection', function(socket){
-    console.log('connected socket: ' + socket);
+ioSoc.sockets.on('connection', function(socket){
+
+    console.log('socket connected: ' + socket.id);
+    //new user
+    socket.on('addUser', function(data){
+        activeUsers.push(data);
+        console.log("User count : " + activeUsers.length);
+        console.log('New user : ' + activeUsers);
+        ioSoc.sockets.emit('updateUsers', {user:activeUsers});
+    });
+
+    //message transfer
+    socket.on('send', function(data){
+        console.log('send :' + data);
+        ioSoc.sockets.emit('new msg', {msg: data});
+    });
+
+    socket.on('receive', function(socket){
+        console.log('receive : ' + socket);
+    });
+    
+    //socket disconnect
+    socket.on('disconnect', function(socket){
+        /*socket.emit('deleteUser', {user: 'User'});*/
+        activeUsers.pop(socket);
+        console.log('socket disconnected: ' + socket.id);
+        //new user
+        console.log("User count : " + activeUsers.length);
+        ioSoc.sockets.emit('deleteUser', {userCount: activeUsers.length});
+        });
 });
+
+

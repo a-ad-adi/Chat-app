@@ -22,16 +22,27 @@
         <div class="fluid-container">
             <div class="row">
                     <h2 class="text-center">Lets chat..</h2>
+                    <div class="info">
+                        <form id="userForm" class="form-group">
+                                <h4>Name: </h4>
+                                <input type="text" class="username" id="username">
+                                <input type="submit" class="btn btn-default" value="add me!" id="newUser">        
+                        </form>
+                    </div>
             </div>
             <div class="row">            
                 <div class="content">
-                    <div class="text users"></div>
+                    <div class="text users">
+                    </div>
                     <div class="text chat-window">
+                        
                     </div>
                     <div class="text text-area">
-                        <form>
-                            <div class="form-control">
+                        <form id="frm">
+                            <div class="form-group">
                                     <input type="text" class="form-control text-input" placeholder="  Enter message here">
+                                    <!-- <button type="button" class="btn btn-default">Submit</button> -->
+                                    <input type="submit" class="btn btn-default send" value="send">
                             </div>
                         </form>
                     </div>
