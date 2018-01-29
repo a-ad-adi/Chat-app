@@ -60,7 +60,7 @@
     right: -253;
   }
   .message-left{
-    float: right;
+    left: 5%;
   }
   .text-area{
     margin: 5px;
