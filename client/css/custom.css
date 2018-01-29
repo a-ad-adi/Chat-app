@@ -46,12 +46,21 @@
     display: block;
     border-radius: 6px;
     width: auto;
+    max-width: 150px;
+    text-align: left;
     min-height: 25px;
     height: auto;
     margin-top: 3px;
-    margin-left: 22px;
+    /* margin-left: 22px; */
     float: left;
     padding: 4px;
+  }
+  .message-right{
+    /* left: 310px; */
+    right: -253;
+  }
+  .message-left{
+    float: right;
   }
   .text-area{
     margin: 5px;
@@ -145,6 +154,10 @@
   }
   .row{
       text-align: center;
+  }
+  .chat-window div .row{
+    padding-left: 21px;
+    padding-right: 21px;
   }
   body{
    

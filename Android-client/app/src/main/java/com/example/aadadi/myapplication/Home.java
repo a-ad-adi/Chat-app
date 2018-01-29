@@ -14,9 +14,11 @@ import android.widget.TextView;
 
 import java.net.URISyntaxException;
 
-import io.socket.emitter.Emitter;
-import io.socket.engineio.client.Socket;
+import io.socket.client.IO;
+import io.socket.client.Socket;
 
+/*import io.socket.emitter.Emitter;
+import io.socket.engineio.client.Socket;*/
 
 public class Home extends AppCompatActivity {
 
@@ -55,7 +57,20 @@ public class Home extends AppCompatActivity {
 
                     @Override
                     public void onClick(View view) {
+
+                        final Socket socket;
                         try {
+                            final String TAG = "info";
+                            socket = IO.socket("https://192.168.0.11:3002");
+                            socket.connect();
+                            Log.v(TAG, "sending message");
+                            socket.send("Test message");
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+
+
+/*                        try {
                             final String TAG = "info";
                             final Socket socket = new Socket("http://192.168.0.11:3002");
                             socket.on(Socket.EVENT_OPEN, new Emitter.Listener() {
@@ -71,7 +86,7 @@ public class Home extends AppCompatActivity {
 
                         } catch (URISyntaxException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                 }
         });
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

@@ -28,8 +28,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile ('io.socket:engine.io-client:1.0.0') {
-        // excluding org.json which is provided by Android
-        exclude group: 'org.json', module: 'json'
-    }
+    /*
+        compile('io.socket:engine.io-client:1.0.0') {
+            // excluding org.json which is provided by Android
+            exclude group: 'org.json', module: 'json'
+        }
+    */
+    implementation files('libs/socket.io-client-0.7.0.jar')
+    implementation files('libs/engine.io-client-0.8.3.jar')
+    implementation files('libs/json-20090211.jar')
+    implementation files('libs/okhttp-3.5.0.jar')
+    implementation files('libs/okio-1.11.0.jar')
 }

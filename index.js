@@ -38,13 +38,13 @@ ioSoc.sockets.on('connection', function(socket){
         activeUsers.push(data);
         console.log("User count : " + activeUsers.length);
         console.log('New user : ' + activeUsers);
-        ioSoc.sockets.emit('updateUsers', {user:activeUsers});
+        ioSoc.sockets.emit('updateUsers', {user:data});
     });
 
     //message transfer
     socket.on('send', function(data){
-        console.log('send :' + data);
-        ioSoc.sockets.emit('new msg', {msg: data});
+        console.log('send :' + data.user);
+        ioSoc.sockets.emit('new msg', {msg: data.message, user: data.user});
     });
 
     socket.on('receive', function(socket){
@@ -60,6 +60,8 @@ ioSoc.sockets.on('connection', function(socket){
         console.log("User count : " + activeUsers.length);
         ioSoc.sockets.emit('deleteUser', {userCount: activeUsers.length});
         });
+
+
 });
 
 
